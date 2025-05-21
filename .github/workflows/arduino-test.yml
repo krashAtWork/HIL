@@ -1,0 +1,31 @@
+name: Arduino Hardware Test
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+
+jobs:
+  hw-test:
+    runs-on: self-hosted
+
+    steps:
+      - name: Checkout Code
+        uses: actions/checkout@v3
+
+      - name: Install Python Dependencies
+        run: |
+          pip install -r requirements.txt
+
+      - name: Compile Arduino Code
+        run: |
+          arduino-cli compile --fqbn arduino:avr:uno blink_test
+
+      - name: Upload Sketch to Arduino
+        run: |
+          arduino-cli upload -p COM7 --fqbn arduino:avr:uno blink_test
+
+      - name: Run Python Hardware Tests
+        run: |
+          python test_arduino.py
