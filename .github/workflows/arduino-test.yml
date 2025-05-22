@@ -15,7 +15,7 @@ jobs:
         run: |
           curl -fsSL https://raw.githubusercontent.com/arduino/arduino-cli/master/install.sh | sh
           echo "$HOME/bin" >> $GITHUB_PATH
-          
+
       - name: Checkout Code
         uses: actions/checkout@v3
 
@@ -25,11 +25,11 @@ jobs:
 
       - name: Compile Arduino Code
         run: |
-          arduino-cli compile --fqbn arduino:avr:uno blink_test
+          C:\Users\kgupta\HIL-1\arduino-cli compile --fqbn arduino:avr:uno blink_test
 
       - name: Upload Sketch to Arduino
         run: |
-          arduino-cli upload -p COM7 --fqbn arduino:avr:uno blink_test
+          C:\Users\kgupta\HIL-1\arduino-cli upload -p COM7 --fqbn arduino:avr:uno blink_test
 
       - name: Run Python Hardware Tests
         run: |
