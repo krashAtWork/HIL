@@ -15,11 +15,7 @@ jobs:
       - name: Debug PATH
         run: echo $Env:Path
 
-      - name: Install arduino-cli
-        run: |
-          curl -fsSL https://raw.githubusercontent.com/arduino/arduino-cli/master/install.sh | sh
-          echo "$HOME/bin" >> $GITHUB_PATH
-
+     
       - name: Checkout Code
         uses: actions/checkout@v3
 
