@@ -21,7 +21,7 @@ def send_command(command):
         return response
 
 def test_temperature():
-    temp = float(send_command("READ_TEMP"))
+    temp = float(send_command("READ_TEMP").strip())
     print(f"Temperature: {temp}")
     assert 20.0 <= temp <= 30.0, f"Unexpected temperature: {temp}"
 
@@ -36,5 +36,5 @@ def test_led_toggle():
 if __name__ == "__main__":
     test_temperature()
     # test_led_toggle()
-    print("✅ All tests passed.")
+    print("All tests passed.")
 
