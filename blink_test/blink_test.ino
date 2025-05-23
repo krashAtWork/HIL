@@ -1,36 +1,26 @@
+#define LED_PIN 13
+int ledState = LOW;
+
 void setup() {
   Serial.begin(9600);
-  pinMode(13, OUTPUT);  
-  Serial.println("READY");
-  
+  pinMode(LED_PIN, OUTPUT);
+  digitalWrite(LED_PIN, ledState);
 }
 
 void loop() {
   if (Serial.available()) {
-    String command = Serial.readStringUntil('\n');
+    String cmd = Serial.readStringUntil('\n');
+    cmd.trim();
 
-    if (command == "TOGGLE_LED") {  
-      
-      int ledState = digitalRead(13);
-      
-      if (ledState == 0) {
-        digitalWrite(13, HIGH);
-        Serial.println(digitalRead(13));
-        
-        
-      } else {
-        digitalWrite(13, 0);
-        Serial.println(digitalRead(13));
-      }
-       delay(50);    
-      // Serial.println(digitalRead(13));
-    }
-    // Add a short delay to avoid multiple toggles on a single press
-        
-    if (command == "READ_TEMP") {
-      float fakeTemp = 25.4;  // Replace with sensor read later
-      Serial.println(fakeTemp);
+    if (cmd == "TOGGLE") {
+      ledState = !ledState;
+      digitalWrite(LED_PIN, ledState);
+      Serial.println(String("LED=") + (ledState ? "ON" : "OFF"));
+    } else if (cmd == "TEMP") {
+      float temp = analogRead(A0) * (5.0 / 1023.0) * 100;
+      Serial.println(String("TEMP=") + temp);
+    } else {
+      Serial.println("ERR=UNKNOWN_CMD");
     }
   }
 }
-
