@@ -22,11 +22,11 @@ def test_temperature_reading(test, arduino):
     assert match, "Bad TEMP format"
     temp = float(match.group(1))
     test.logger.info("Temperature: %.2f", temp)
-    test.measurements.temp = temp
+
     assert 10.0 < temp < 50.0
 
 
-test = htf.Test( test_temperature_reading)
+test = htf.Test(test_temperature_reading)
 
 if __name__ == "__main__":
     test.execute()
