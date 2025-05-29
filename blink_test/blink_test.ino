@@ -17,7 +17,7 @@ void loop() {
       digitalWrite(LED_PIN, ledState);
       Serial.println(String("LED=") + (ledState ? "ON" : "OFF"));
     } else if (cmd == "TEMP") {
-      float temp = 45;
+      float temp = 45.0;
       Serial.println(String("TEMP=") + temp);
     } else {
       Serial.println("ERR=UNKNOWN_CMD");
