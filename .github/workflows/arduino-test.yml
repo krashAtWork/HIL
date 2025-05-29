@@ -15,7 +15,6 @@ jobs:
       - name: Debug PATH
         run: echo $Env:Path
 
-     
       - name: Checkout Code
         uses: actions/checkout@v3
 
@@ -33,4 +32,4 @@ jobs:
 
       - name: Run Python Hardware Tests
         run: |
-          python test_arduino.py
+          python test_arduino_openhtf.py
